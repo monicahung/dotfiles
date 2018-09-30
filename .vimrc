@@ -18,6 +18,7 @@ Plug 'benekastah/neomake'
 Plug 'ervandew/supertab'
 Plug 'leafgarland/typescript-vim'
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -104,3 +105,10 @@ set foldnestmax=10    " let's not go too deep
 " za to toggle folding
 " zM to fold everything
 " zR to unfold everything
+
+" Key mappings for fzf plugin
+nmap <leader>t :FZF<CR>
+nmap <leader>bb :Buffers<CR>
+
+" Respect .gitignore in fzf
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
