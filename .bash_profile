@@ -10,19 +10,25 @@ export NVM_DIR="/Users/monica.hung/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 alias rt="CHROME_DEBUG=1 bundle exec ruby -I'lib:test'"
+alias rty="bundle exec ruby -I'lib:test'"
 alias bsh="mvim ~/.bash_profile"
 alias rebsh="source ~/.bash_profile"
 alias repow="touch ~/.pow/restart.txt"
+alias recat="puma-dev --stop"
 alias vimrc="mvim ~/.vimrc"
 alias rmswp="find . -type f -name \".*.swp\" -exec rm -f {} \;"
 alias setup="git pull && bundle && bin/rails db:migrate && bin/yarn"
 alias rgi="rg -i"
+alias eslint="~/mycase/mycase_app/node_modules/.bin/eslint"
+alias tslint="~/mycase/mycase_app/node_modules/.bin/tslint"
 
 # git stuff
 alias gpoh="git push origin HEAD"
 alias gs="git status"
+alias gd="git diff"
 alias grbc="git rebase --continue"
-alias gcmt="git commit -m"
+alias gc="git commit -m"
+alias gcp="git cherry-pick"
 
 
 export CLICOLOR=1
