@@ -112,3 +112,6 @@ nmap <leader>bb :Buffers<CR>
 
 " Respect .gitignore in fzf
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+
+" Map fd in insert mode to esc
+inoremap fd <Esc>
