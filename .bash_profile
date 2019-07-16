@@ -1,5 +1,6 @@
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 if [ -f ~/.git-completion.bash ]; then
@@ -8,7 +9,13 @@ fi
 
 export NVM_DIR="/Users/monica.hung/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# ctrl+e x will now bring up vim instead of emacs as default editor
+export EDITOR='vim'
+# fixes fzf to not pull up gitignored files
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+alias cdmc="cd ~/mycase/mycase_app"
 alias rt="CHROME_DEBUG=1 bundle exec ruby -I'lib:test'"
 alias rty="bundle exec ruby -I'lib:test'"
 alias bsh="mvim ~/.bash_profile"
@@ -21,9 +28,10 @@ alias setup="git pull && bundle && bin/rails db:migrate && bin/yarn"
 alias rgi="rg -i"
 alias eslint="~/mycase/mycase_app/node_modules/.bin/eslint"
 alias tslint="~/mycase/mycase_app/node_modules/.bin/tslint"
+alias git-branch-date="git branch --sort=-committerdate | tail -r | tail -10"
 
 # git stuff
-alias gpoh="git push origin HEAD"
+alias gpoh="git push -u origin HEAD"
 alias gs="git status"
 alias gd="git diff"
 alias grbc="git rebase --continue"
@@ -84,10 +92,12 @@ git_prompt ()
   echo "$git_branch"
 }
 
-cdmc()
-{
-  cd ~/mycase/mycase_"$1"
-}
+#going to a mycase directory
+#replacing with just cdmc to hardcoded app
+#cdmc()
+#{
+#  cd ~/mycase/mycase_"$1"
+#}
 
 PS1="\[$DarkGreen\]\t \[$Orange\]\w \[$UPurple\]\$(git_prompt)\[$Black\]\$ "
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -10,6 +10,8 @@
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
+"   Use :PlugInstall to update
+"   Make sure you close vimrc and reopen before using :PlugInstall
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
@@ -19,6 +21,16 @@ Plug 'ervandew/supertab'
 Plug 'leafgarland/typescript-vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags' "Why do I have this?
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript' ] }
+ " We only have prettier for typescript rn "
+ " Usage: <Leader>p "
 
 call plug#end()
 
@@ -27,13 +39,31 @@ autocmd! BufWritePost * Neomake
 
 " Use 'bundle exec' when running rubocop in neomake
 let g:neomake_ruby_rubocop_maker_exe = 'bundle exec rubocop'
+" Do not execute eslint from cwd
+let g:neomake_javascript_eslint_maker = {
+        \ 'args': ['--format=compact'],
+        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+        \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
+        \ 'output_stream': 'stdout',
+        \ }
+
+" Debugging
+let g:neomake_logfile = '/tmp/neomake.log'
+
+" Prettier settings for MyCase "
+
+" max line length that prettier will wrap on
+" Prettier default: 80
+let g:prettier#config#print_width = 120
+" single quotes over double quotes
+" Prettier default: false
+let g:prettier#config#single_quote = 'true'
 
 
 " **************************************
 " * VARIABLES
 " **************************************
 set nocompatible		" get rid of strict vi compatibility!
-set nu				" line numbering on
 set autoindent			" autoindent on
 set noerrorbells		" bye bye bells :)
 set modeline			" show what I'm doing
@@ -50,6 +80,15 @@ set incsearch			" incremental searching
 set hlsearch			" meh
 set bs=2			" fix backspacing in insert mode
 set bg=dark
+
+" Hybrid line numbers
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Expand tabs in C, java, and ruby files to spaces
 au BufRead,BufNewFile *.{c,h,java,rb,erb} set expandtab
