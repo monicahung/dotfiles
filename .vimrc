@@ -49,6 +49,12 @@ let g:neomake_javascript_eslint_maker = {
         \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
         \ 'output_stream': 'stdout',
         \ }
+let g:neomake_typescript_eslint_maker = {
+        \ 'args': ['--format=compact'],
+        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+        \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
+        \ 'output_stream': 'stdout',
+        \ }
 
 " Debugging
 let g:neomake_logfile = '/tmp/neomake.log'
