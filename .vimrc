@@ -12,6 +12,7 @@
 " - Avoid using standard Vim directory names like 'plugin'
 "   Use :PlugInstall to update
 "   Make sure you close vimrc and reopen before using :PlugInstall
+"   :PlugClean to remove directories
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
@@ -21,7 +22,7 @@ Plug 'ervandew/supertab'
 Plug 'leafgarland/typescript-vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'ludovicchabant/vim-gutentags' "Why do I have this?
+" Plug 'ludovicchabant/vim-gutentags' "Why do I have this?
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -39,6 +40,8 @@ autocmd! BufWritePost * Neomake
 
 " Use 'bundle exec' when running rubocop in neomake
 let g:neomake_ruby_rubocop_maker_exe = 'bundle exec rubocop'
+" Turn on eslint for typescript files
+let g:neomake_typescript_enabled_makers = ['tsc', 'eslint']
 " Do not execute eslint from cwd
 let g:neomake_javascript_eslint_maker = {
         \ 'args': ['--format=compact'],
@@ -79,7 +82,6 @@ set showmatch			" ensure Dyck language
 set incsearch			" incremental searching
 set hlsearch			" meh
 set bs=2			" fix backspacing in insert mode
-set bg=dark
 
 " Hybrid line numbers
 set number relativenumber
@@ -140,7 +142,7 @@ highlight clear SignColumn
 " folding settings "
 set foldmethod=syntax " fold based on syntax [ indent, manual, expr, marker, diff ]
 set nofoldenable      " start without folded
-set foldnestmax=10    " let's not go too deep
+set foldnestmax=3    " let's not go too deep
 " za to toggle folding
 " zM to fold everything
 " zR to unfold everything
@@ -154,3 +156,6 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 
 " Map fd in insert mode to esc
 inoremap fd <Esc>
+
+" Fix syntax highlighting for tsx files
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
