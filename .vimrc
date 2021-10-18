@@ -39,7 +39,7 @@ call plug#end()
 autocmd! BufWritePost * Neomake
 
 " Use 'bundle exec' when running rubocop in neomake
-let g:neomake_ruby_rubocop_maker_exe = 'bundle exec rubocop'
+" let g:neomake_ruby_rubocop_maker_exe = 'bundle exec rubocop'
 " Turn on eslint for typescript files
 let g:neomake_typescript_enabled_makers = ['tsc', 'eslint']
 " Do not execute eslint from cwd
@@ -165,3 +165,6 @@ inoremap fd <Esc>
 
 " Fix syntax highlighting for tsx files
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+
+" add ctags
+set tags+=.tags

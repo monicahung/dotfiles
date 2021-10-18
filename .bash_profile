@@ -7,6 +7,9 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
+# need to put bin for rubocop, and after rbenv initialization so it doesn't use shims rubocop
+export PATH="$HOME/bin:$PATH"
+
 export NVM_DIR="/Users/monica.hung/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # ctrl+e x will now bring up vim instead of emacs as default editor
@@ -16,6 +19,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 alias cdmc="cd ~/mycase/mycase_app"
+alias cdmcl="cd ~/mycase/mycase_login"
 alias rt="CHROME_DEBUG=1 bundle exec ruby -I'lib:test'"
 alias rty="bundle exec ruby -I'lib:test'"
 alias bsh="mvim ~/.bash_profile"
@@ -24,14 +28,15 @@ alias repow="touch ~/.pow/restart.txt"
 alias recat="puma-dev --stop"
 alias vimrc="mvim ~/.vimrc"
 alias rmswp="find . -type f -name \".*.swp\" -exec rm -f {} \;"
-alias setup="git pull && bundle && bin/rails db:migrate:status && bin/yarn"
-alias rgi="rg -i"
+alias setup="git pull && bundle install --local && bin/rails db:migrate:status && bin/yarn"
+alias rgi="rg -S"
 alias eslint="~/mycase/mycase_app/node_modules/.bin/eslint"
 alias tslint="~/mycase/mycase_app/node_modules/.bin/tslint"
 alias git-branch-date="git branch --sort=-committerdate | tail -r | tail -10"
 alias watch-tsc="fswatch --recursive --one-per-batch app | xargs -n 1 -I{} /bin/bash -c 'echo \"Running tsc\"; if tsc --noEmit; then echo \"good to go\"; fi' - {}"
 alias cts="script/ci/check_typescript"
 alias gbd="git branch -D"
+alias ffs="ls config/settings/features/"
 
 # git stuff
 alias gpoh="git push -u origin HEAD"
@@ -40,6 +45,12 @@ alias gd="git diff"
 alias grbc="git rebase --continue"
 alias gc="git commit -m"
 alias gcp="git cherry-pick"
+
+# history stuff
+export HISTCONTROL=ignorespace:erasedups
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+shopt -s histappend
 
 
 export CLICOLOR=1
