@@ -45,6 +45,7 @@ alias gd="git diff"
 alias grbc="git rebase --continue"
 alias gc="git commit -m"
 alias gcp="git cherry-pick"
+alias gdn="git diff --name-only"
 
 # history stuff
 export HISTCONTROL=ignorespace:erasedups
