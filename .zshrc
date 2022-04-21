@@ -19,6 +19,7 @@ export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+alias cdds="cd ~/discord"
 alias cdmc="cd ~/mycase/mycase_app"
 alias cdmcl="cd ~/mycase/mycase_login"
 alias rt="CHROME_DEBUG=1 bundle exec ruby -I'lib:test'"
@@ -125,3 +126,5 @@ PROMPT='%F{green}%*%f %F{cyan}${PWD/#$HOME/~}%f %F{magenta}${vcs_info_msg_0_}%f$
 # time in dark green, cwd in orange, purple git prompt $
 # PS1="\[$DarkGreen\]\t \[$Orange\]\w \[$UPurple\]\$(git_prompt)\[$Black\]\$ "
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
