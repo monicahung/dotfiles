@@ -1,12 +1,6 @@
-autoload -Uz compinit
-compinit
-#compdef clyde
-_clyde() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _CLYDE_COMPLETE=complete-zsh  clyde)
-}
-if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
-  compdef _clyde clyde
-fi
+
+
+. $HOME/.nix-profile/etc/profile.d/nix.sh
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
@@ -20,6 +14,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 alias cdds="cd ~/discord"
+alias setup-discord="cd ~/discord && clyde stop all && clyde start base_services --exit-when-done && clyde migrate apply && clyde rings"
 alias cdmc="cd ~/mycase/mycase_app"
 alias cdmcl="cd ~/mycase/mycase_login"
 alias rt="CHROME_DEBUG=1 bundle exec ruby -I'lib:test'"
@@ -110,10 +105,10 @@ precmd() { vcs_info }
 
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats '%b'
- 
+
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
-PROMPT='%F{green}%*%f %F{cyan}${PWD/#$HOME/~}%f %F{magenta}${vcs_info_msg_0_}%f$ '
+PROMPT='%F{green}%*%f %n %F{cyan}${PWD/#$HOME/~}%f %F{magenta}${vcs_info_msg_0_}%f$ '
 
 
 #going to a mycase directory
@@ -128,3 +123,13 @@ PROMPT='%F{green}%*%f %F{cyan}${PWD/#$HOME/~}%f %F{magenta}${vcs_info_msg_0_}%f$
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+autoload -Uz compinit
+compinit
+#compdef clyde
+_clyde() {
+  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _CLYDE_COMPLETE=complete-zsh  clyde)
+}
+if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
+  compdef _clyde clyde
+fi
