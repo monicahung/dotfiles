@@ -31,6 +31,7 @@ alias setup="git pull && bundle install --local && bin/rails db:migrate:status &
 alias rgi="rg -S"
 alias eslint="~/mycase/mycase_app/node_modules/.bin/eslint"
 alias tslint="~/mycase/mycase_app/node_modules/.bin/tslint"
+alias git-branch-date2="git branch --sort=-committerdate | tail -r | tail -10"
 alias git-branch-date="git branch --sort=committerdate | tail -10"
 alias watch-tsc="fswatch --recursive --one-per-batch app | xargs -n 1 -I{} /bin/bash -c 'echo \"Running tsc\"; if tsc --noEmit; then echo \"good to go\"; fi' - {}"
 alias cts="script/ci/check_typescript"
