@@ -15,6 +15,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 alias cdds="cd ~/discord"
 alias setup-discord="cd ~/discord && clyde stop all && clyde start base_services --exit-when-done && clyde migrate apply && clyde rings"
+alias start-discord="clyde start app developers -i discord_interactions --exit-when-done"
 alias cdmc="cd ~/mycase/mycase_app"
 alias cdmcl="cd ~/mycase/mycase_login"
 alias rt="CHROME_DEBUG=1 bundle exec ruby -I'lib:test'"

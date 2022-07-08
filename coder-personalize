@@ -3,5 +3,4 @@
 tmux \
     new-session -d -s discord-dev -n setup-discord -c ~/discord \; \
     send-keys -t discord-dev:setup-discord "setup-discord" Enter \; \
-    new-window -n debug-log \; \
-    send-keys -t discord-dev:debug-log 'tail -f ~/var/log/debug.log' Enter
+    new-window -n workspace
