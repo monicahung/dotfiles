@@ -136,3 +136,6 @@ _clyde() {
 if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
   compdef _clyde clyde
 fi
+source /Users/monica.hung/.nix-profile/etc/profile.d/nix.sh
+
+eval "$(rbenv init - zsh)"
