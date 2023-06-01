@@ -1,5 +1,43 @@
 {
     "vim.vimrc.enable": true,
+      "vim.camelCaseMotion.enable": true,
+  "vim.easymotion": true,
+  "vim.leader": "<space>",
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"],
+    },
+  ],
+  "vim.highlightedyank.enable": true,
+  "vim.mouseSelectionGoesIntoVisualMode": false,
+  "vim.showMarksInGutter": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "j"],
+      "after": ["<leader>", "<leader>", "j"],
+    },
+    {
+      "before": ["<leader>", "k"],
+      "after": ["<leader>", "<leader>", "k"],
+    },
+    {
+      "before": ["<leader>", "s"],
+      "after": ["<leader>", "<leader>", "s"],
+    },
+    {
+      "before": ["<leader>", "d"],
+      "commands": ["editor.action.revealDefinition"],
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.showHover"],
+    },
+    {
+      "before": ["<leader>", "l"],
+      "commands": ["copyRelativeFilePath"],
+    }
+  ],
         "remote.SSH.defaultForwardedPorts": [
           {
             "name": "supervisord",
