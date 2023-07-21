@@ -3,4 +3,4 @@
 tmux \
     new-session -d -s discord-dev -n setup-discord -c ~/discord \; \
     send-keys -t discord-dev:setup-discord "setup-discord" Enter \; \
-    new-window -n workspace
+    new-window -n workspace -c ~/discord
