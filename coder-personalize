@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo apt-get install -y fzf ripgrep
+
 tmux \
     new-session -d -s discord-dev -n setup-discord -c ~/discord \; \
     send-keys -t discord-dev:setup-discord "setup-discord" Enter \; \
