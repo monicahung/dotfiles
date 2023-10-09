@@ -10,6 +10,11 @@
 "   Use :PlugInstall to update
 "   Make sure you close vimrc and reopen before using :PlugInstall
 "   :PlugClean to remove directories
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
@@ -18,7 +23,7 @@ Plug 'benekastah/neomake'
 Plug 'ervandew/supertab'
 Plug 'leafgarland/typescript-vim'
 Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'ludovicchabant/vim-gutentags' "Why do I have this?
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'prettier/vim-prettier', {

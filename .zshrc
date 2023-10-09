@@ -13,6 +13,9 @@ export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+export ANDROID_HOME=/Users/$USER/Library/Android/sdk
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+
 alias cdds="cd ~/discord"
 alias setup-discord="cd ~/discord && clyde stop all && clyde start base_services --exit-when-done && clyde migrate apply && clyde rings"
 alias start-discord="clyde start app developers -i discord_interactions --exit-when-done"
@@ -21,8 +24,8 @@ alias cdmc="cd ~/mycase/mycase_app"
 alias cdmcl="cd ~/mycase/mycase_login"
 alias rt="CHROME_DEBUG=1 bundle exec ruby -I'lib:test'"
 alias rty="bundle exec ruby -I'lib:test'"
-alias bsh="mvim ~/.bash_profile"
-alias zsh="mvim ~/.zshrc"
+alias bshrc="mvim ~/.bash_profile"
+alias zshrc="mvim ~/.zshrc"
 alias rebsh="source ~/.bash_profile"
 alias rezsh="source ~/.zshrc"
 alias repow="touch ~/.pow/restart.txt"
@@ -146,3 +149,7 @@ _clyde() {
 if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
   compdef _clyde clyde
 fi
+
+# add fzf keybindings and autocompletion
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
