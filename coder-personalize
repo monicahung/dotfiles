@@ -5,4 +5,5 @@ sudo apt-get install -y fzf ripgrep
 tmux \
     new-session -d -s discord-dev -n setup-discord -c ~/discord \; \
     send-keys -t discord-dev:setup-discord "setup-discord" Enter \; \
+    send-keys -t discord-dev:setup-discord "start-discord" Enter \; \
     new-window -n workspace -c ~/discord
